@@ -1,0 +1,9 @@
+6.17 Python
+1.变量和数据类型：
+	--字符串：
+		title(),upper(),lower()
+		rstrip()lstrip(),strip()去掉字符串两端空白
+		str()转换字符串
+2.列表：
+
+		
