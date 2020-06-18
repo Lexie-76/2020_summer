@@ -1,0 +1,22 @@
+6.15 Git
+1.创建版本库：在Git-Bash中输入下图中的命令，其中learngit是仓库所在文件夹。
+ 
+
+2.仓库管理：输入命令如下，空仓库成功建立。
+ 
+
+3.文件提交：先使用git add，此时进入暂存区，再使用git commit命令，-m后面输入的是本次提交的说明，任意内容。可以多次add后再commit，一次提交多个文件，进入工作区。
+
+4.查看结果：git status命令可以时刻掌握仓库当前状态；git diff可以查看详细的改动之处。
+
+5.历史记录：git log命令显示从最近到最远的提交日志。
+
+6.版本回退：git reset命令，HEAD指向版本号。如果版本号丢失，git reflog记录了每一次命令，可以由此找到版本号。
+
+7.撤销修改：git checkout -- file可以丢弃工作区的修改,无关是否add进入暂存区，结果都会让这个文件回到最近一次git commit或git add时的状态。
+
+8.删除文件：使用rm命令，在版本号与工作区不同时，用命令git rm从版本库中删掉并commit。git checkout还可以解决误删。
+
+9.分支管理：git checkout命令加上-b参数表示创建并切换，用git branch命令查看当前分支，git merge命令用于合并指定分支到当前分支。除此外，最新版git switch命令来切换分支。Git用<<<<<<<，=======，>>>>>>>标记出不同分支的内容，用git log --graph命令可以看到分支合并图。
+
+10.多人协作：用git push origin <branch-name>推送自己的修改，如果推送失败，需要先用git pull试图合并。查看远程库信息，使用git remote -v，建立本地分支和远程分支的关联，使用git branch --set-upstream branch-name origin/branch-name。
