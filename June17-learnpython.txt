@@ -4,6 +4,48 @@
 		title(),upper(),lower()
 		rstrip()lstrip(),strip()去掉字符串两端空白
 		str()转换字符串
-2.列表：
+2.列表：方括号，索引0开始，最后一个为-1，倒二为-2···
+	--添加：
+		append()末尾添加新元素
+		insert()在某一位置添加
+	--删除：
+		del 索引删除 
+		pop() 从末尾弹出或索引弹出
+		remove()删除值，仅删除一次
+	--组织：
+		sort()永久排序  reverse=True倒字典叙
+		sorted()临时排序
+		reverse()永久改变，反向输出，再次reverse可以恢复
+		len()计算长度
+	--遍历：
+		for 缩进、冒号
+		range()[)区间
+		list()列表转换
+	--切片：
+		[:][)区间
+	--复制：
+		全切片赋值，直接赋值实际上是两个指针指向相同
+	--元组：不可变的列表，圆括号，通过重新赋值来修改
+3.条件：
+	--if：
+		and 且
+		or 或
+		if-elif-else
+	--in/not in：
+		是否包含在列表中，返回bool
+4.字典：键值对 花括号，成对添加成对删除
+	--遍历：
+		for k, v in user_0.items()
+		for k in user_0.keys() 返回列表
+		for v in user_0.values() 
+		for v in set(user_0.values()) 消除重复项
+		
+		
+	
+
+		
+	
+	
+	
 
 		
