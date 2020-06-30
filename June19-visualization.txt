@@ -1,1 +1,25 @@
 6.19 Visualization
+
+1.导入pyplot模块，指定别名plt，一面反复输入pyplot
+
+2.linewidth决定绘制得线条的粗细；fontsize指定了图表中文字的大小
+
+3.tick_params设置刻度的样式
+
+4.scatter散点图，s设置绘制的尺寸，c设置颜色，默认蓝色点和黑色轮廓
+
+5.颜色映射：c=y_values,cmap=plt.cm.Blues,值较小的浅色，值较大的深色
+
+6.savefig保存图片，参数bbox_inches='tight'将图表多余的空白区域裁剪掉
+
+7.plt.axes().get_xaxis().set_visible(False)隐藏坐标轴
+
+8.figure用于指定图表的宽度、高度、分辨率和背景色
+
+9.pygal条形图（直方图）pygal.Bar()
+——————————————————————————————————————————————————————————————————————————
+1.CSV文件格式：将数据作为一系列以逗号分隔的值 以逗号分隔的值写入文件
+
+2.alpha指定颜色的透明度
+
+3.字符串转为整数时，先float()，再int()丢弃小数部分
