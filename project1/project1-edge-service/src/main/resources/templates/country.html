@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <!-- 引入 echarts.js -->
+    <script src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+    <!-- 引入 jquery.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+<h1>ECharts country</h1>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="width: 600px;height:400px;"></div>
+<script type="text/javascript">
+    // 创建函数，完成从本地获取json数据，并ECharts显示
+    function localDataAndShow() {
+        // 0 - 基于准备好的dom，初始化echarts实例
+        let myChart = echarts.init(document.getElementById('main'));
+
+        // 1. 指定图表的配置项
+        myChart.setOption({
+                title: {
+                    text: 'Country',
+                    left: 'center',
+                    top: 20,
+                    textStyle: {
+                        color: '#ccc'
+                    }
+                },
+
+                tooltip: {
+                    trigger: 'item',
+                    formatter: '{a} <br/>{b} : {c} ({d}%)'
+                },
+
+                visualMap: {
+                    show: false,
+                    min: 80,
+                    max: 600,
+                    inRange: {
+                        colorLightness: [0, 1]
+                    }
+                },
+                series: [
+                    {
+                        name: '访问来源',
+                        type: 'pie',
+                        radius: '55%',
+                        center: ['50%', '50%'],
+                        data: []
+                        roseType: 'radius',
+                        label: {
+                            color: 'rgba(255, 255, 255, 0.3)'
+                        },
+                        labelLine: {
+                            lineStyle: {
+                                color: 'rgba(255, 255, 255, 0.3)'
+                            },
+                            smooth: 0.2,
+                            length: 10,
+                            length2: 20
+                        },
+                        itemStyle: {
+                            color: '#c23531',
+                            shadowBlur: 200,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        },
+
+                        animationType: 'scale',
+                        animationEasing: 'elasticOut',
+                        animationDelay: function (idx) {
+                            return Math.random() * 200;
+                        }
+                    }
+                ]
+            }
+        );
+        myChart.showLoading();
+
+        // 2. 填充数据 = 数据从本地的json数据文件中获取
+        $.ajax({
+            type : 'post',
+            url : '/mongo/countrydata',
+            dataType : "json",
+            success : function (result) {
+                myChart.hideLoading();
+                myChart.setOption({
+                    series: [{
+                        data: (result.data).sort(function (a, b) { return a.value - b.value; }),
+                    }]
+
+                });
+            },
+            error : function (errorMessage) {
+                alert("Data is Error.");
+                myChart.hideLoading();
+            }
+        });
+    };
+
+    localDataAndShow();
+
+</script>
+</body>
+</html>

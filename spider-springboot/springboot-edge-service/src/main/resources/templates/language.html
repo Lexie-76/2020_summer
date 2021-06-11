@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>语言</title>
+    <!-- 引入 echarts.js -->
+    <script src="/js/echarts.min.js"></script>
+    <!-- 引入 jquery.js -->
+    <script src="/js/jquery.min.js"></script>
+</head>
+<body>
+<h1>影片语言</h1>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="width: 600px;height:400px;"></div>
+<script type="text/javascript">
+    // 创建函数，完成从本地获取json数据，并ECharts显示
+    function localDataAndShow() {
+        // 0 - 基于准备好的dom，初始化echarts实例
+        let myChart = echarts.init(document.getElementById('main'));
+
+        // 1. 指定图表的配置项
+        myChart.setOption({
+            tooltip: {
+                trigger: 'item',
+                formatter: '{a} <br/>{b}: {c} ({d}%)'
+            },
+            legend: {
+                orient: 'vertical',
+                left: 10,
+                data: []
+            },
+            series: [
+                {
+                    type: 'pie',
+                    radius: ['50%', '70%'],
+                    avoidLabelOverlap: false,
+                    label: {
+                        show: false,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        label: {
+                            show: true,
+                            fontSize: '30',
+                            fontWeight: 'bold'
+                        }
+                    },
+                    labelLine: {
+                        show: false
+                    },
+                    data: []
+                }
+            ]}
+        );
+        myChart.showLoading();
+
+        let names = [];
+        let nums = [];
+        // 2. 填充数据 = 数据从本地的json数据文件中获取
+        $.ajax({
+            type : 'get',
+            url : '/languagedata2',
+            dataType : "json",
+            success : function (result) {
+                $.each(result, function (index, item) {
+                        names.push(item.name);
+                    }
+                );
+
+
+                myChart.hideLoading();
+                myChart.setOption({
+                    legend:
+                        [{
+                            data: names
+                        }],
+                    series: [{
+                        data: result
+                    }]
+
+                });
+            },
+            error : function (errorMessage) {
+                alert("Data is Error.");
+                myChart.hideLoading();
+            }
+        });
+    };
+
+    localDataAndShow();
+
+</script>
+</body>
+</html>

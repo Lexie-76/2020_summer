@@ -1,0 +1,27 @@
+
+
+*{
+    padding: 0;
+    margin: 0;
+}
+    
+
+
+h1,h2{
+
+    margin:0 auto;
+    text-align: center;
+}
+
+body,.jumbotron
+{
+    background: url("https://film-grab.com/wp-content/uploads/2019/10/Dumbo-009.jpg") no-repeat center 0
+} 
+.showbtn{
+    display:block;
+    margin:auto;
+    max-width: 15%;
+    margin-top: 1%;
+    text-align: center;
+    align-items: center;
+}
